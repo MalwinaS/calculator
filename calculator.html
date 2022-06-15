@@ -6,16 +6,38 @@
   <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
+<script type="text/javascript" src="data.txt"></script>
 <script>
-  heading = document.createElement("calculator");
-  heading = document.createElement("div");
-  heading_text = document.createTextNode("Calculator");
-  heading.appendChild(heading_text);
-  heading.classList.add("heading");
-  document.body.appendChild(heading);
 
-  body = document. createElement("table");
-  body = document.createElement("div");
+heading = document.createElement("calculator");
+heading = document.createElement("div");
+heading_text = document.createTextNode("Calculator");
+heading.appendChild(heading_text);
+heading.classList.add("heading");
+document.body.appendChild(heading);
+
+var myData = JSON.parse(data);
+// alert(myData[2].number);
+
+for (var i = 0; i < myData.length; i++) { 
+  var a = myData[i].number;
+  var number = document.createElement("button");
+  var numberText = document.createTextNode(a);
+  number.appendChild(numberText);
+  document.body.appendChild(number);
+  number.appendChild(numberText);
+  number.classList.add("number_" + a,"number");
+  document.body.appendChild(number);
+
+  // console.log(myData[i].number);
+}
+
+  // inputCalculator = document.createElement("input");
+  // inputCalculator = document.createElement("div");
+  // inputCalculator.setAttribute("type", "text");
+  // heading.classList.add("input-calculator");
+  // document.body.appendChild(inputCalculator);
+
 </script>
 </body>
 </html>
