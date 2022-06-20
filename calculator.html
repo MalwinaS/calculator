@@ -7,6 +7,7 @@
 </head>
 <body>
 <script type="text/javascript" src="data.txt"></script>
+<script src="https://unpkg.com/mathjs@9.2.0/lib/browser/math.js"></script>
 <script>
 
 heading = document.createElement("calculator");
@@ -16,27 +17,66 @@ heading.appendChild(heading_text);
 heading.classList.add("heading");
 document.body.appendChild(heading);
 
-var myData = JSON.parse(data);
-// alert(myData[2].number);
+var inputCalculator = document.createElement("input");
+document.body.appendChild(inputCalculator);
+inputCalculator.classList.add("input-calculator");
 
-for (var i = 0; i < myData.length; i++) { 
-  var a = myData[i].number;
+var numberData = JSON.parse(data);
+
+for (var i = 0; i < numberData.length; i++) { 
+  var a = numberData[i].number;
   var number = document.createElement("button");
   var numberText = document.createTextNode(a);
   number.appendChild(numberText);
-  document.body.appendChild(number);
+  // document.body.appendChild(number);
   number.appendChild(numberText);
   number.classList.add("number_" + a,"number");
   document.body.appendChild(number);
-
-  // console.log(myData[i].number);
+  number.addEventListener("click",  (e) => {
+    inputCalculator.value += e.target.innerText;
+  })
 }
 
-  // inputCalculator = document.createElement("input");
-  // inputCalculator = document.createElement("div");
-  // inputCalculator.setAttribute("type", "text");
-  // heading.classList.add("input-calculator");
-  // document.body.appendChild(inputCalculator);
+var signData = JSON.parse(sign);
+
+for (var i = 0; i < signData.length; i++) { 
+  var b = signData[i].sign;
+  var sign = document.createElement("button");
+  var signText = document.createTextNode(b);
+  sign.appendChild(signText);
+  document.body.appendChild(sign);
+  sign.appendChild(signText);
+  sign.classList.add("sign_" + b,"sign");
+  // document.body.appendChild(sign);
+  sign.addEventListener("click",  (e) => {
+  inputCalculator.value += e.target.innerText;
+  })
+}
+
+var sumData = JSON.parse(sum);
+for (var i = 0; i < sumData.length; i++) { 
+  var b = sumData[i].sum;
+  var sum = document.createElement("button");
+  var sumText = document.createTextNode(b);
+  sum.appendChild(sumText);
+  document.body.appendChild(sum);
+  sum.appendChild(sumText);
+  sum.classList.add("sum");
+  // document.body.appendChild(sign);
+  sum.addEventListener("click",  (e) => {
+    // evaluate: function () { 
+        let result = math.evaluate(inputCalculator.value);
+        inputCalculator.value = result;
+  })
+}
+
+
+function init() {
+  var button = document.getElementsByClassName(numberText);
+  console.log(button);
+}
+
+init();
 
 </script>
 </body>
